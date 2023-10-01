@@ -1,3 +1,10 @@
 #include "echangeContenu.h"
+#include <stdio.h>
 
-// TODO implementer echangeContenu
+void echangeContenu(int *a, int *b) {
+    int valeur = *a;
+    *a = *b;
+    *b = valeur;
+}
+
+

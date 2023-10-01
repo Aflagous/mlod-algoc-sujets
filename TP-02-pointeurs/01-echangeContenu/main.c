@@ -1,17 +1,13 @@
-#include <stdio.h>
-#include "echangeContenu.h"
+#include "echangeContenu.c"
 
 int main(void)
 {
-	int a=4,b=14;
+	int a=4;
+	int b=14;
 
 	printf ("a = %d\tb = %d\n", a, b);
-
-	// TODO
-
-	printf ("a et b echanges \n");
+	echangeContenu(&a, &b);
 	printf ("a = %d\tb = %d\n", a, b);
-
 	return 0;
 }
 

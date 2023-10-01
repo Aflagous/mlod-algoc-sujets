@@ -1,0 +1,1 @@
+int parfait(int nombre);
