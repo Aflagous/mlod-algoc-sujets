@@ -2,99 +2,146 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define TODO NULL;
-
-// retourne vrai si l est vide et faux sinon
 bool estVide(Liste l) {
 	return l == NULL;
 }
 
-// créer une liste d'un seul élément contenant la valeur v
 Liste creer(Element v){
-	return TODO;
+    Liste nouvelleListe = (Liste)malloc(sizeof(Cellule));
+	nouvelleListe->val = v;
+	nouvelleListe->suiv = NULL;
+    return nouvelleListe;
 }
 
-// ajoute l'élément v en tete de la liste l
-Liste ajoutTete(Element v, Liste l) {
-	return TODO;
+Liste ajoutTete(Element v, Liste l){
+    Liste nouvelleListe = creer(v);
+	nouvelleListe->suiv = l;
+    return nouvelleListe;
 }
 
-
-void afficheElement(Element e) {
-	printf("%i ",e);
+void afficheElement(Element e){
+	printf("%d ",e);
 }
 
-// affiche tous les éléments de la liste l
-// Attention, cette fonction doit être indépendante du type des éléments de la liste
-// utiliser une fonction annexe affiche_element
-// Attention la liste peut être vide !
-// version itérative
-void afficheListe_i(Liste l) {
-	TODO;
+void afficheListe_i(Liste l){
+	Liste p = l;
+    while (!estVide(p)) {
+       	afficheElement(p->val);
+        p = p->suiv;
+    }
+    printf("Fin de la liste\n");
 }
 
-// version recursive
-void afficheListe_r(Liste l) {
-	TODO;
+void afficheListe_r(Liste l){
+    if (l == NULL) {
+        printf("Fin de la liste\n");
+    } else {
+        afficheElement(l->val);
+        afficheListe_r(l->suiv);
+    }
 }
 
-void detruireElement(Element e) {}
+void detruireElement(Element e){ }
 
-// Détruit tous les éléments de la liste l
-// version itérative
-void detruire_i(Liste l) {
-	TODO;
+void detruire_i(Liste l){
+    Liste suivant, courant = l;
+    while (!estVide(courant)) {
+		suivant = courant->suiv;
+		detruireElement(courant->val);
+        free(courant);
+        courant = suivant; 
+    }
 }
 
-// version récursive
-void detruire_r(Liste l) {
-	TODO;
+void detruire_r(Liste l){
+	if (!estVide(l)) {
+		detruire_r(l->suiv);
+		detruireElement(l->val);
+		free(l);
+    }
 }
 
-// retourne la liste dans laquelle l'élément v a été ajouté en fin
-// version itérative
 Liste ajoutFin_i(Element v, Liste l) {
-	return TODO;
+	Liste nouvelleListe = creer(v);
+	Liste p = l;
+	if (estVide(p)) {
+        return nouvelleListe;
+    }
+	while(!estVide(p->suiv)){
+		p =p ->suiv;
+	}
+	p->suiv= nouvelleListe;
+	return l;
 }
 
-// version recursive
 Liste ajoutFin_r(Element v, Liste l) {
-	return TODO;
+	if (l != NULL) {
+        l->suiv = ajoutFin_r(v,l->suiv);
+		return l;
+	}
+	Liste nouvelleListe = creer(v);
+	return nouvelleListe;
 }
 
-// compare deux elements
 bool equalsElement(Element e1, Element e2){
 	return e1 == e2;
 }
 
-// Retourne un pointeur sur l'élément de la liste l contenant la valeur v ou NULL
-// version itérative
 Liste cherche_i(Element v,Liste l) {
-	return TODO;
+	while (l != NULL) {
+		if (equalsElement(v, l->val)) {
+			return l;
+		}
+		l = l->suiv;
+    }
+	return NULL;
 }
 
-// version récursive
 Liste cherche_r(Element v,Liste l) {
-	return TODO;
+	if (l == NULL) {
+		return NULL;
+	}
+	if (equalsElement(v, l->val)) {
+        return l;
+    }  
+	return cherche_r(v, l->suiv);
 }
 
-// Retourne la liste modifiée dans la laquelle le premier élément ayant la valeur v a été supprimé
-// ne fait rien si aucun élément possède cette valeur
-// version itérative
 Liste retirePremier_i(Element v, Liste l) {
-	return TODO;
+    Liste prec = NULL; 
+    Liste courant = l; 
+    while (courant != NULL) {
+        if (courant->val == v) {
+            if (prec != NULL) {
+                prec->suiv = courant->suiv;
+            } else {
+                l = courant->suiv;
+            }
+            free(courant);
+            break;
+        }
+        prec = courant;
+        courant = courant->suiv;
+    }
+    return l;
 }
 
-
-// version recursive
 Liste retirePremier_r(Element v, Liste l) {
-	return TODO;
+    if (l == NULL) {
+        return NULL;
+    }
+    if (l->val == v) {
+        Liste suivant = l->suiv; 
+        free(l); 
+        return suivant;
+    }
+    l->suiv = retirePremier_r(v, l->suiv);
+    return l;
 }
-
 
 void afficheEnvers_r(Liste l) {
-	TODO;
+    if (l != NULL) {
+		afficheEnvers_r(l->suiv);
+    	printf("%d ", l->val);
+    }
 }
-
-
-
