@@ -11,8 +11,7 @@ int main(void){
 	// a = NULL;
 	printf("estVide(a)= %s\n",estVide(a)?"TRUE":"FALSE");
 	printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
-
-	a = insere_r(a,5);
+/*	a = insere_r(a,5);
 	afficheGRD_r(a);printf("\n");
 	a = insere_r(a,3);
 	afficheGRD_r(a);printf("\n");
@@ -22,6 +21,7 @@ int main(void){
 	afficheGRD_r(a);printf("\n");
 	a = insere_r(a,1);
 	afficheGRD_r(a);printf("\n");
+
 
 	printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
 
@@ -33,7 +33,7 @@ int main(void){
 	afficheGRD_r(a);printf("\n");
 	a = insere_r(a,3);
 	afficheGRD_r(a);printf("\n");
-	printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
+	printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));*/
 
 // 	a = supprimer_r(a,6);
 // 	afficheGRD_r(a);printf("\n");
@@ -82,7 +82,7 @@ int main(void){
 	// printf("suppression(5) : \n");afficheGDR_r(a);printf("\n");
 	// printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
 
-	detruire_r(a);
+	//detruire_r(a);
 
 	return EXIT_SUCCESS;
 }
